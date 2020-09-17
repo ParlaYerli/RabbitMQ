@@ -3,9 +3,9 @@ using RabbitMQ.Client;
 using System;
 using System.Text;
 
-namespace RabbitMQ.Publisher1
+namespace RabbitMQ.example.fanout.Producer1
 {
-    //exchange fanout için örnek
+    //exchange fanout için örnek: queuedeki mesajlar bütün consumerlara iletilir.
     class Program
     {
         static void Main(string[] args)

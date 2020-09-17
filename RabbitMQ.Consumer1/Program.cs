@@ -3,7 +3,7 @@ using RabbitMQ.Client.Events;
 using System;
 using System.Text;
 
-namespace RabbitMQ.Consumer1
+namespace RabbitMQ.example.fanout.Consumer1
 {
     //exchange : fanout
     class Program

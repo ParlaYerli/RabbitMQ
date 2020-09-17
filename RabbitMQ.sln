@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Publisher", "Rabbi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Consumer", "RabbitMQ.Consumer\RabbitMQ.Consumer.csproj", "{94CAE21D-B9BC-4AEE-BE0D-52651A51C1E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Publisher1", "RabbitMQ.Publisher1\RabbitMQ.Publisher1.csproj", "{5E29AFAF-E5CC-4088-AB2A-7F3442CA6AB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Publisher1", "RabbitMQ.Publisher1\RabbitMQ.Publisher1.csproj", "{5E29AFAF-E5CC-4088-AB2A-7F3442CA6AB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Consumer1", "RabbitMQ.Consumer1\RabbitMQ.Consumer1.csproj", "{ADCE63D8-788C-4E45-97E6-FEE9B4062210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Consumer1", "RabbitMQ.Consumer1\RabbitMQ.Consumer1.csproj", "{ADCE63D8-788C-4E45-97E6-FEE9B4062210}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example.fanout", "example.fanout", "{72EF0459-6A9C-4856-856B-94BC936D3B5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E29AFAF-E5CC-4088-AB2A-7F3442CA6AB8} = {72EF0459-6A9C-4856-856B-94BC936D3B5D}
+		{ADCE63D8-788C-4E45-97E6-FEE9B4062210} = {72EF0459-6A9C-4856-856B-94BC936D3B5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {610D65F2-67A4-4F66-98AD-FBD172F00598}
