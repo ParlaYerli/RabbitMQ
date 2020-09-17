@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RabbitMQ.Consumer1
 {
+    //exchange : fanout
     class Program
     {
         static void Main(string[] args)
