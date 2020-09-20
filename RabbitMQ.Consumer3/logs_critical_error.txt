@@ -1,0 +1,7 @@
+log=Info-Warning-Warning
+log=Error-Error-Warning
+log=Warning-Error-Warning
+log=Warning-Critical-Warning
+log=Warning-Critical-Warning
+log=Critical-Critical-Warning
+log=Error-Info-Warning

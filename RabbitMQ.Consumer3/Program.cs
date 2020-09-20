@@ -4,11 +4,11 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace RabbitMQ.Consumer2
+namespace RabbitMQ.Consumer3
 {
     public enum LogNames
     {
-        Critical = 1, Error = 2, Warning=3
+        Critical = 1, Error = 2, Warning = 3
     }
     class Program
     {
@@ -21,18 +21,17 @@ namespace RabbitMQ.Consumer2
             {
                 using (var channel = connection.CreateModel()) // kanalı açıyorum
                 {
-                    channel.ExchangeDeclare("direct-exchange", durable: true, type: ExchangeType.Direct);
+                    channel.ExchangeDeclare("topic-exchange", durable: true, type: ExchangeType.Topic);
                     //consumer için her instance oluştuğunda , exchange'e bağlı bir kuyruk olusacak.  oluşan her bir kuyruğun isminin birbirinden farklı olmasını sağlar.
                     // bu yüzden random olarak belirlenmesini sağlıyorum.
                     var queueName = channel.QueueDeclare().QueueName;
-                    foreach (var item in Enum.GetNames(typeof(LogNames)))
-                    {
-                         channel.QueueBind(queue: queueName, exchange: "direct-exchange", routingKey: item);
-                    }
+                    var routingKey = "#.Warning";
+                    channel.QueueBind(queue: queueName, exchange: "topic-exchange", routingKey: routingKey);
+
                     //consumerlar arası eşit dağılım
                     channel.BasicQos(prefetchSize: 0, prefetchCount: 1, false);//consumera 1 tane mesaj gelsin . true olursa tüm consumer için , false olursa sadece tek bir consumer için geçerlidir.
-                    Console.WriteLine("Error ve Critical logları bekliyorum ... ");
-                   
+                    Console.WriteLine("Custom logları bekliyorum ... ");
+
                     var consumer = new EventingBasicConsumer(channel);
                     channel.BasicConsume(queueName, autoAck: false, consumer);//autoAck: false -> consumer mesajı işledikten sonra queueye bilgi gönderecek ve mesaj silinecek.
                     consumer.Received += (model, e) =>
@@ -42,10 +41,11 @@ namespace RabbitMQ.Consumer2
                         Console.WriteLine("log alındı" + log);
                         File.AppendAllText("logs_critical_error.txt", log + "\n");
                         channel.BasicAck(e.DeliveryTag, multiple: false);// consumer, mesajı işledikten sonra broker queueden silebilir.   
-                    Console.WriteLine("log bitti...");
+                        Console.WriteLine("log bitti...");
                     };
                     Console.ReadLine();
                 }
+
             }
         }
     }
